@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Wait a minute</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"/>
+    </h:head>
+    <h:body>
+        <div class="vh-100 d-flex justify-content-center align-items-center">
+            <div class="p-5 w-50">
+                <h1 class="text-center">Wait A Minute....</h1>
+                <h1 class="text-center">Who Are You !?</h1>
+                <h:form>
+                    <div class="pt-4 text-center">
+                        <h:commandButton styleClass="btn btn-danger w-50" value="Admin" action="/admin/login.xhtml?faces-redirect=true"/>
+                    </div>
+                    <div class="pt-2 text-center">
+                        <h:commandButton styleClass="btn btn-success w-50" value="Customer" action="/customer/login.xhtml?faces-redirect=true"/>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
