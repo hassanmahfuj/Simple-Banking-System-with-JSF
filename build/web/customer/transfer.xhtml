@@ -11,29 +11,20 @@
     <h:body>
         <h:form>
             <div>
-                <h:outputLabel>From Account Number</h:outputLabel>
-                <h:inputText value="#{fundTransfer.fromAccountNumber}">
-                    <f:ajax listener="#{fundTransfer.proccessFrom()}" render="name1"/>
-                </h:inputText>
-            </div>
-            <div>
-                <p>From Holder Name : <h:outputText id="name1" value="#{fundTransfer.fromHolderName}"/></p>
-            </div>
-            <div>
                 <h:outputLabel>To Account Number</h:outputLabel>
-                <h:inputText value="#{fundTransfer.toAccountNumber}">
-                    <f:ajax listener="#{fundTransfer.proccessTo()}" render="name2"/>
+                <h:inputText value="#{customerFundTransfer.toAccountNumber}">
+                    <f:ajax listener="#{customerFundTransfer.proccessTo()}" render="name2"/>
                 </h:inputText>
             </div>
             <div>
-                <p>To Holder Name : <h:outputText id="name2" value="#{fundTransfer.toHolderName}"/></p>
+                <p>To Holder Name : <h:outputText id="name2" value="#{customerFundTransfer.toHolderName}"/></p>
             </div>
             <div>
                 <h:outputLabel>Amount</h:outputLabel>
-                <h:inputText value="#{fundTransfer.amount}"></h:inputText>
+                <h:inputText value="#{customerFundTransfer.amount}"></h:inputText>
             </div>
             <div>
-                <h:commandButton value="SUBMIT" action="#{fundTransfer.proccessTransfer()}" />
+                <h:commandButton value="SUBMIT" action="#{customerFundTransfer.proccessTransfer()}" />
             </div>
         </h:form>
     </h:body>
