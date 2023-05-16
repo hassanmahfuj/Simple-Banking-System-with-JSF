@@ -31,6 +31,12 @@ public class SessionUtil {
                 .getExternalContext().getSession(false);
         return session.getAttribute("username").toString();
     }
+    
+    public static String getAccountNumber() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+                .getExternalContext().getSession(false);
+        return session.getAttribute("acc").toString();
+    }
 
     public static String getUserId() {
         HttpSession session = getSession();

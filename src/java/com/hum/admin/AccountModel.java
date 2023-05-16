@@ -1,8 +1,12 @@
 package com.hum.admin;
 
+import com.hum.util.SessionUtil;
 import com.hum.util.db;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -158,9 +162,25 @@ public class AccountModel {
         this.password = password;
     }
     
+    public String nextCusId() {
+        String c = "";
+        try {
+            ResultSet rs = db.get().executeQuery("SELECT account_number FROM customers ORDER BY account_number DESC LIMIT 1");
+            if(rs.next()) {
+                int a = rs.getInt(1) + 1;
+                c = String.valueOf(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return c;
+    }
+    
     public String submitData() {
-        String s = "INSERT INTO customers (holder_name, fathers_name, mothers_name, nid, dob, phone_number, email, address, n_name, n_nid, n_dob, n_relation, account_type, balance, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        boolean x = db.get().executeUpdate(s, holderName, fathersName, mothersName, nid, new java.sql.Date(dob.getTime()), phoneNumber, email, address, nomName, nomNid, new java.sql.Date(nomDob.getTime()), nomRelation, accountType, initialDeposit, username, password);
+        String cus_id = nextCusId();
+        String s = "INSERT INTO customers (account_number, holder_name, fathers_name, mothers_name, nid, dob, phone_number, email, address, n_name, n_nid, n_dob, n_relation, account_type, balance, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        boolean x = db.get().executeUpdate(s, cus_id, holderName, fathersName, mothersName, nid, new java.sql.Date(dob.getTime()), phoneNumber, email, address, nomName, nomNid, new java.sql.Date(nomDob.getTime()), nomRelation, accountType, initialDeposit, username, password);
+        boolean y = db.get().executeUpdate("INSERT INTO statements (cus_id, date, amount, type, description, balance) VALUES (?, ?, ?, ?, ?, ?)", cus_id, new java.sql.Date(new Date().getTime()), initialDeposit, "Deposit", "Initial Deposit", initialDeposit);
         if(x) {
             return "open-account.xhtml?faces-redirect=true&msg=Data submitted succesfully.";
         } else {

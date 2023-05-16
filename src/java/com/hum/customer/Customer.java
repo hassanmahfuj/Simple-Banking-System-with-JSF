@@ -42,6 +42,7 @@ public class Customer {
             if(rs.next()) {
                 HttpSession session = SessionUtil.getSession();
                 session.setAttribute("username", username);
+                session.setAttribute("acc", rs.getString("account_number"));
                 return "dashboard?faces-redirect=true";
             } else {
                 return "login?faces-redirect=true&errmsg=Username or Password is wrong!";
@@ -60,5 +61,9 @@ public class Customer {
     
     public String getUserName() {
         return SessionUtil.getUserName();
+    }
+    
+    public String getAccountNumber() {
+        return SessionUtil.getAccountNumber();
     }
 }
