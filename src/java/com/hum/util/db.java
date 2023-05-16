@@ -92,6 +92,8 @@ public class db {
                     pst.setString(i+1, (String) args[i]);
                 if(args[i] instanceof Date)
                     pst.setDate(i+1, (Date) args[i]);
+                if(args[i] instanceof Double)
+                    pst.setDouble(i+1, (double) args[i]);
                 if(args[i] == null)
                     pst.setString(i+1, null);
             }

@@ -1,12 +1,10 @@
 package com.hum.admin;
 
-import com.hum.util.SessionUtil;
 import com.hum.util.db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -163,7 +161,7 @@ public class AccountModel {
     }
     
     public String nextCusId() {
-        String c = "";
+        String c = "1000";
         try {
             ResultSet rs = db.get().executeQuery("SELECT account_number FROM customers ORDER BY account_number DESC LIMIT 1");
             if(rs.next()) {

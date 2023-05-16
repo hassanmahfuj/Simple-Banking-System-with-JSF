@@ -6,7 +6,6 @@ import com.hum.util.db;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 /**
@@ -15,7 +14,7 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 public class StatementBean {
-    private List<Statement> dataList; // List to store retrieved data from the database
+    private List<Statement> dataList;
 
     public List<Statement> getDataList() {
         dataList = retrieveDataFromDatabase();
@@ -26,16 +25,10 @@ public class StatementBean {
         this.dataList = dataList;
     }
 
-//    @PostConstruct
-//    public void init() {
-//        // Perform database query and populate dataList
-//        dataList = retrieveDataFromDatabase();
-//    }
-
     private List<Statement> retrieveDataFromDatabase() {
         List<Statement> data = new ArrayList<>();
         try {
-            ResultSet rs = db.get().executeQuery("SELECT id, date, description, type, amount, balance FROM statements WHERE cus_id = ?", SessionUtil.getAccountNumber());
+            ResultSet rs = db.get().executeQuery("SELECT id, date, description, type, amount, balance FROM statements WHERE cus_id = ? ORDER BY id DESC", SessionUtil.getAccountNumber());
             while(rs.next()) {
                 Statement s = new Statement();
                 s.setId(rs.getString(1));
