@@ -47,7 +47,6 @@ public class AdminViewStatementModel {
     }
 
     private List<Statement> retrieveDataFromDatabase() {
-        System.out.println("getting data");
         List<Statement> data = new ArrayList<>();
         try {
             ResultSet rs = db.get().executeQuery("SELECT id, date, description, type, amount, balance FROM statements WHERE cus_id = ? ORDER BY id DESC", account_number);
@@ -65,7 +64,6 @@ public class AdminViewStatementModel {
                 }
                 s.setBalance(rs.getString(6));
                 data.add(s);
-                System.out.println(rs.getString(6));
             }
         } catch (Exception e) {
             System.out.println(e);

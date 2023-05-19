@@ -9,28 +9,33 @@
         <h:outputScript library="javax.faces" name="jsf.js" target="head" />
     </h:head>
     <h:body>
-        <h:form>
+        <div class="vh-100 d-flex justify-content-center align-items-center">
             <div>
-                <h:outputLabel>Account Number</h:outputLabel>
-                <h:inputText value="#{transaction.account_number}">
-                    <f:ajax listener="#{transaction.proccessName()}" render="name"/>
-                </h:inputText>
+                <h2>Deposit</h2>
+                <h:form styleClass="pt-4">
+                    <div>
+                        <h:outputLabel styleClass="form-label">Account Number</h:outputLabel>
+                        <h:inputText styleClass="form-control" value="#{transaction.account_number}">
+                            <f:ajax listener="#{transaction.proccessName()}" render="name"/>
+                        </h:inputText>
+                    </div>
+                    <div>
+                        <h:outputLabel styleClass="form-label">Holder Name</h:outputLabel>
+                        <h:inputText id="name" styleClass="form-control" value="#{transaction.holder_name}"></h:inputText>
+                    </div>
+                    <div>
+                        <h:outputLabel styleClass="form-label">Description</h:outputLabel>
+                        <h:inputText styleClass="form-control" value="#{transaction.description}"></h:inputText>
+                    </div>
+                    <div>
+                        <h:outputLabel styleClass="form-label">Amount</h:outputLabel>
+                        <h:inputText styleClass="form-control" value="#{transaction.amount}"></h:inputText>
+                    </div>
+                    <div class="mt-4">
+                        <h:commandButton styleClass="btn btn-outline-primary" value="SUBMIT" action="#{transaction.proccessDeposit()}" />
+                    </div>
+                </h:form>
             </div>
-            <div>
-                <p>Holder Name : <h:outputText id="name" value="#{transaction.holder_name}"/></p>
-            </div>
-            <div>
-                <h:outputLabel>Description</h:outputLabel>
-                <h:inputText value="#{transaction.description}"></h:inputText>
-            </div>
-            <div>
-                <h:outputLabel>Amount</h:outputLabel>
-                <h:inputText value="#{transaction.amount}"></h:inputText>
-            </div>
-            <div>
-                <h:commandButton value="SUBMIT" action="#{transaction.proccessDeposit()}" />
-            </div>
-            
-        </h:form>
+        </div>
     </h:body>
 </html>

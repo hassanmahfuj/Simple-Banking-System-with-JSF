@@ -56,7 +56,7 @@ public class Customer {
     public String logout() {
         HttpSession session = SessionUtil.getSession();
         session.invalidate();
-        return "login?faces-redirect=true";
+        return "/index.xhtml?faces-redirect=true";
     }
     
     public String getUserName() {

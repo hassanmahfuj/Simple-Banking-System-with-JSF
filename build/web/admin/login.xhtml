@@ -8,23 +8,19 @@
     </h:head>
     <h:body>
         <div class="vh-100 d-flex justify-content-center align-items-center">
-            <div class="p-5 w-50">
+            <div class="p-5">
                 <h1 class="text-center">Admin Login Here</h1>
                 <h:form>
-                    <div class="pt-4 row">
-                        <h:outputLabel styleClass="col-form-label col-2">Username</h:outputLabel>
-                        <div class="col-10">
-                            <h:inputText styleClass="form-control" value="#{admin.username}"></h:inputText>
-                        </div>
+                    <div>
+                        <h:outputLabel styleClass="col-form-label">Username</h:outputLabel>
+                        <h:inputText styleClass="form-control" value="#{admin.username}"/>
                     </div>
-                    <div class="pt-4 row">
-                        <h:outputLabel styleClass="col-form-label col-2">Password</h:outputLabel>
-                        <div class="col-10">
-                            <h:inputText styleClass="form-control" value="#{admin.password}"></h:inputText>
-                        </div>
+                    <div>
+                        <h:outputLabel styleClass="col-form-label">Password</h:outputLabel>
+                        <h:inputSecret styleClass="form-control" value="#{admin.password}"/>
                     </div>
                     <div class="pt-4 text-center">
-                        <h:commandButton styleClass="btn btn-outline-success w-25" value="LOGIN" action="#{admin.login()}"/>
+                        <h:commandButton styleClass="btn btn-outline-success" value="LOGIN" action="#{admin.login()}"/>
                     </div>
                     <p class="text-center pt-2 text-danger">#{param.get("errmsg")}</p>
                 </h:form>
